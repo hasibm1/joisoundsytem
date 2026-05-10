@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JOI SOUNDSYSTEM — Documentary Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IM+Fell+English:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a08;
+    --surface: #111110;
+    --surface2: #1a1a17;
+    --gold: #c8a94a;
+    --gold-dim: #7a6630;
+    --rust: #b84a2a;
+    --cream: #e8e0cc;
+    --muted: #6b6558;
+    --text: #d4ccb8;
+    --accent: #4a8a6a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  .masthead {
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 60px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(200,169,74,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(184,74,42,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .masthead-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .masthead h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 160px);
+    line-height: 0.85;
+    color: var(--cream);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .masthead h1 span {
+    color: var(--gold);
+  }
+  .masthead-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--muted);
+    margin-top: 20px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+  .masthead-meta {
+    margin-top: 32px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    border-left: 2px solid var(--gold-dim);
+    padding-left: 12px;
+  }
+  .meta-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .meta-value {
+    color: var(--cream);
+    font-size: 12px;
+  }
+
+  /* NAV */
+  .toc {
+    padding: 32px 48px;
+    border-bottom: 1px solid #222;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .toc-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 8px;
+  }
+  .toc a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .toc a:hover { opacity: 1; }
+
+  /* LAYOUT */
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid #1e1e1a;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .section-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--gold-dim);
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 3px;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .section-desc {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 8px;
+    max-width: 500px;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+  }
+  .timeline-entry {
+    position: relative;
+    margin-bottom: 40px;
+  }
+  .timeline-entry::before {
+    content: '';
+    position: absolute;
+    left: -28px;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(200,169,74,0.4);
+  }
+  .timeline-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .timeline-event {
+    color: var(--cream);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .timeline-detail {
+    color: var(--text);
+    font-size: 12px;
+    line-height: 1.8;
+    max-width: 680px;
+  }
+  .timeline-tag {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-dim);
+    margin-top: 8px;
+    margin-right: 6px;
+  }
+  .timeline-tag.red { border-color: var(--rust); color: var(--rust); }
+  .timeline-tag.green { border-color: var(--accent); color: var(--accent); }
+
+  /* ALBUMS GRID */
+  .album-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+  .album-card {
+    background: var(--surface);
+    padding: 32px;
+    position: relative;
+    border: 1px solid #1e1e1a;
+    transition: border-color 0.2s;
+  }
+  .album-card:hover { border-color: var(--gold-dim); }
+  .album-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--gold-dim);
+    opacity: 0.3;
+    line-height: 1;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+  }
+  .album-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--cream);
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .album-label {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .album-desc {
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .album-tracks {
+    border-top: 1px solid #2a2a26;
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+  .album-tracks-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .track-list {
+    list-style: none;
+  }
+  .track-list li {
+    font-size: 11px;
+    color: var(--muted);
+    padding: 2px 0;
+    counter-increment: track;
+  }
+  .track-list li::before {
+    content: counter(track, decimal-leading-zero) '  ';
+    color: var(--gold-dim);
+    opacity: 0.6;
+  }
+  .track-list { counter-reset: track; }
+  .album-quote {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--gold);
+    border-left: 2px solid var(--gold-dim);
+    padding-left: 12px;
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  /* PEOPLE */
+  .people-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2px;
+  }
+  .person-card {
+    background: var(--surface);
+    padding: 28px 32px;
+    border: 1px solid #1e1e1a;
+  }
+  .person-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--cream);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+  .person-role {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .person-bio {
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .person-born-died {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* QUOTES */
+  .quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+  }
+  .quote-card {
+    background: var(--surface);
+    padding: 28px 32px;
+    border: 1px solid #1e1e1a;
+    position: relative;
+  }
+  .quote-card::before {
+    content: '"';
+    font-family: 'IM Fell English', serif;
+    font-size: 120px;
+    color: var(--gold);
+    opacity: 0.06;
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .quote-text {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--cream);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .quote-attr {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    border-top: 1px solid #2a2a26;
+    padding-top: 12px;
+  }
+
+  /* SINGLES */
+  .discog-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .discog-table th {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 8px 16px 12px;
+    border-bottom: 1px solid #222;
+  }
+  .discog-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #1a1a17;
+    font-size: 12px;
+    vertical-align: top;
+  }
+  .discog-table tr:hover td { background: var(--surface); }
+  .discog-table .year { color: var(--gold); font-family: 'Bebas Neue', sans-serif; font-size: 18px; }
+  .discog-table .title { color: var(--cream); }
+  .discog-table .note { color: var(--muted); font-size: 11px; }
+
+  /* CONTEXT */
+  .context-block {
+    background: var(--surface);
+    border: 1px solid #1e1e1a;
+    padding: 36px 40px;
+    margin-bottom: 2px;
+    border-left: 3px solid var(--gold-dim);
+  }
+  .context-block h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--cream);
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+  .context-block p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: var(--text);
+    max-width: 760px;
+    margin-bottom: 12px;
+  }
+  .context-block p:last-child { margin-bottom: 0; }
+
+  /* SOURCES */
+  .source-list {
+    list-style: none;
+  }
+  .source-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #1a1a17;
+    font-size: 11px;
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .source-type {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    min-width: 80px;
+    flex-shrink: 0;
+  }
+  .source-name { color: var(--cream); }
+  .source-status { color: var(--muted); margin-left: auto; font-size: 10px; }
+  .source-status.ok { color: var(--accent); }
+  .source-status.blocked { color: var(--rust); }
+
+  /* AWARDS */
+  .awards-list {
+    list-style: none;
+  }
+  .awards-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid #1a1a17;
+    display: grid;
+    grid-template-columns: 64px 1fr 1fr 120px;
+    gap: 16px;
+    align-items: center;
+    font-size: 12px;
+  }
+  .award-year { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); }
+  .award-work { color: var(--cream); }
+  .award-body { color: var(--muted); }
+  .award-cat { color: var(--accent); font-size: 11px; text-align: right; }
+
+  /* FOOTER */
+  .archive-footer {
+    border-top: 1px solid var(--gold-dim);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+  }
+  .footer-left {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: var(--gold-dim);
+    letter-spacing: 2px;
+  }
+  .footer-right {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-align: right;
+  }
+
+  /* PILL TAGS */
+  .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border: 1px solid #2a2a26;
+    color: var(--muted);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+
+    body { font-size: 14px; }
+
+    /* spacing */
+    .masthead  { padding: 36px 20px 32px; }
+    .toc       { padding: 20px; gap: 14px; }
+    .content   { padding: 0 20px 60px; }
+    .archive-footer { padding: 24px 20px; flex-direction: column; gap: 12px; align-items: flex-start; }
+
+    /* masthead */
+    .masthead h1 { font-size: clamp(52px, 18vw, 80px); }
+    .masthead-sub { font-size: 15px; }
+    .masthead-meta { gap: 18px; }
+    .meta-value { font-size: 13px; }
+
+    /* toc — wrap tightly, smaller font */
+    .toc { flex-wrap: wrap; }
+    .toc a { font-size: 12px; }
+
+    /* sections */
+    .section { margin-top: 48px; padding-top: 36px; }
+    .section-header { flex-direction: column; gap: 4px; margin-bottom: 28px; }
+    .section-num { font-size: 36px; opacity: 0.35; }
+    .section-title { font-size: 28px; letter-spacing: 2px; }
+    .section-desc { font-size: 13px; max-width: 100%; }
+
+    /* timeline */
+    .timeline { padding-left: 24px; }
+    .timeline-entry::before { left: -20px; width: 7px; height: 7px; }
+    .timeline-year { font-size: 24px; }
+    .timeline-event { font-size: 13px; }
+    .timeline-detail { font-size: 12px; max-width: 100%; }
+
+    /* grids → single column */
+    .album-grid,
+    .people-grid,
+    .quotes-grid { grid-template-columns: 1fr; }
+
+    /* album cards */
+    .album-card { padding: 24px 20px; }
+    .album-year { font-size: 40px; }
+    .album-title { font-size: 24px; }
+
+    /* person cards */
+    .person-card { padding: 24px 20px; }
+
+    /* quote cards */
+    .quote-card { padding: 24px 20px; }
+    .quote-text { font-size: 14px; }
+
+    /* context blocks */
+    .context-block { padding: 24px 20px; }
+    .context-block p { font-size: 13px; max-width: 100%; }
+
+    /* discog table → card layout */
+    .discog-table thead { display: none; }
+    .discog-table, .discog-table tbody,
+    .discog-table tr, .discog-table td { display: block; width: 100%; }
+    .discog-table tr {
+      border-bottom: 1px solid #2a2a26;
+      padding: 14px 0;
+    }
+    .discog-table td {
+      padding: 2px 0;
+      border-bottom: none;
+      font-size: 13px;
+    }
+    .discog-table td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .discog-table .year { font-size: 22px; }
+
+    /* source list → stack vertically */
+    .source-list li {
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .source-name {
+      width: 100%;
+      font-size: 11px;
+      word-break: break-all;
+    }
+    .source-status { margin-left: 0; }
+
+    /* awards → 2-col with wrap */
+    .awards-list li {
+      grid-template-columns: 52px 1fr;
+      grid-template-rows: auto auto;
+      gap: 4px 12px;
+    }
+    .award-year { grid-row: span 2; align-self: center; }
+    .award-body, .award-cat { grid-column: 2; font-size: 11px; }
+    .award-cat { text-align: left; color: var(--accent); }
+
+    /* footer */
+    .footer-left { font-size: 18px; }
+    .footer-right { text-align: left; }
+  }
+
+  /* ── TABLET ── */
+  @media (min-width: 601px) and (max-width: 900px) {
+    .masthead, .toc, .archive-footer { padding-left: 32px; padding-right: 32px; }
+    .content { padding-left: 32px; padding-right: 32px; }
+    .masthead h1 { font-size: clamp(64px, 14vw, 100px); }
+    .people-grid { grid-template-columns: 1fr; }
+    .awards-list li { grid-template-columns: 60px 1fr 1fr; }
+    .award-cat { grid-column: 2 / 4; text-align: left; }
+    .discog-table th, .discog-table td { padding: 10px 12px; }
+    .source-name { font-size: 11px; word-break: break-word; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-label">Documentary Research Archive · Compiled May 2026</div>
+  <h1>JOI <span>SOUND</span><br>SYSTEM</h1>
+  <div class="masthead-sub">
+    "We are about politics, race, religion, and music all-in-one."<br>
+    — Farook Shamsher, The Independent, 1999
+  </div>
+  <div class="masthead-meta">
+    <div class="meta-item">
+      <span class="meta-label">Origin</span>
+      <span class="meta-value">Brick Lane, East London</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Heritage</span>
+      <span class="meta-value">Bangladeshi / Indian</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Active</span>
+      <span class="meta-value">1983 – present</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Label</span>
+      <span class="meta-value">Real World Records</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Born in</span>
+      <span class="meta-value">Bradford, West Yorkshire</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <span class="toc-label">Contents</span>
+  <a href="#timeline">Timeline</a>
+  <a href="#people">People</a>
+  <a href="#albums">Albums</a>
+  <a href="#discography">Discography</a>
+  <a href="#context">Context & Scene</a>
+  <a href="#quotes">Testimonials</a>
+  <a href="#awards">Awards</a>
+  <a href="#sources">Sources</a>
+</div>
+
+<div class="content">
+
+<!-- SECTION 1: TIMELINE -->
+  <div class="section" id="timeline">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div>
+        <div class="section-title">Chronology</div>
+        <div class="section-desc">From Brick Lane youth collective to pioneers of the Asian Underground</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1965 / 1968</div>
+        <div class="timeline-event">The Shamshers Are Born</div>
+        <div class="timeline-detail">Haroon Shamsher born 14 November 1965; Farook Shamsher born 24 October 1968. Both born in Bradford, West Yorkshire to a Bangladeshi father (Soni Shamsher, a professional flautist) and an Indian mother. The family settles in the East End of London. Their father runs a Brick Lane shop selling saris and traditional instruments imported from India, and organises recording sessions with Baul artists. The brothers grow up watching Indian musicians record in a makeshift studio in the store and sell cassettes on the street.</div>
+        <span class="timeline-tag">Origins</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1983</div>
+        <div class="timeline-event">Joi Bangla Founded</div>
+        <div class="timeline-detail">Haroon and Farook conceive the "League of Joi Bangla Youth Organisation" — later shortened to Joi Bangla — a collective set up to promote Bengali culture to local children in the East End. They begin spinning records in youth clubs around the Brick Lane area, mixing traditional Bengali music with James Brown riffs, funky breakbeats, hip hop, and dancehall. The name "Joi Bangla" is a rallying cry from the 1971 Bangladesh liberation movement. They quickly establish themselves as the best DJs and party organisers in East London.</div>
+        <span class="timeline-tag">Founding</span>
+        <span class="timeline-tag">Community</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1986</div>
+        <div class="timeline-event">First Music Video</div>
+        <div class="timeline-detail">Joi Bangla's first music video is produced at Despite TV — an East London video collective operating out of the Tower Hamlets Arts Project on Whitechapel Road — while the group is still without a recording contract. Originally intended for the Local Band slot of the Despite TV magazine, it was never released at the time. The full 20-minute version exists in the Spectacle distribution archive.</div>
+        <span class="timeline-tag">Film</span>
+        <span class="timeline-tag">Archive</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1988</div>
+        <div class="timeline-event">First Recordings</div>
+        <div class="timeline-detail">Joi releases their first white label single "Taj Ma House" on BPM Records, followed by "Funky Asian". They begin introducing their own material into Joi Bangla sets. Arts Council funding helps bolster the project, which evolves into the more dance-oriented "Joi" name. They are playing bass clef and other East London venues including the venue that will later become the Blue Note in Hoxton Square — then in an area so rough that, as Farook recalls, it was "hide-your-money-in-your-socks" territory.</div>
+        <span class="timeline-tag">First Releases</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1989</div>
+        <div class="timeline-event">Rebranded as Joi</div>
+        <div class="timeline-detail">After six years as Joi Bangla Sound System, the collective shifts to the more dance-oriented name "Joi". The change reflects their expanding musical scope while maintaining the community ethos. By now they are active members of a growing Asian dance scene and have moved from daytime community gigs to club nights promoting Asian music in general.</div>
+        <span class="timeline-tag">Evolution</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1992</div>
+        <div class="timeline-event">"Desert Storm" — Breakout Single</div>
+        <div class="timeline-detail">Joi releases "Desert Storm" on Transglobal. The NME names it Single of the Week, calling it "one of the most inventive dance records ever made". It travels internationally and becomes their signature early track. Later included as the opening bonus track on the 2015 best-of compilation. (Note: A Desert Storm appears on a 2024 Full Circle compilation "Kicking Dust: The Goa Way", confirming its enduring reach into psychedelic trance circles.)</div>
+        <span class="timeline-tag">Milestone</span>
+        <span class="timeline-tag green">NME Single of the Week</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1993</div>
+        <div class="timeline-event">Joi Club Night Launches</div>
+        <div class="timeline-detail">Joi sets up their own club night in London. Their Thursday night "Asian Vibes" at the Bass Clef (later Blue Note) in Hoxton Square becomes a nerve centre of what will become the Asian Underground movement. Regular crowd includes hippie types, Bangladeshi teenagers, and a mix of cultures. Björk is a regular guest; a young Gerri Halliwell does a brief stint as a Joi dancer. Nitin Sawhney, Talvin Singh and the future founders of Asian Dub Foundation are all in orbit.</div>
+        <span class="timeline-tag">Club Culture</span>
+        <span class="timeline-tag">Asian Underground</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1994</div>
+        <div class="timeline-event">Management & Growth</div>
+        <div class="timeline-detail">Joi appoints Charles Cosh as their manager (later co-managed with Ben Batson of Moksha Management Ltd; New York bookings via Sam Kirby of Evolution Talent Agency). By this point they are doing bi-monthly nights at the Dog Star in Brixton, queues around the block.</div>
+        <span class="timeline-tag">Industry</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1996</div>
+        <div class="timeline-event">Bangladesh EP + WOMAD + Real World</div>
+        <div class="timeline-detail">Joi releases the Bangladesh EP on Nation Records (Aki Nawaz's label). They perform at WOMAD, where they catch the attention of Peter Gabriel. Gabriel invites them to sign to Real World Records — "Welcome to the family," he says. They are among the very few British Asian artists to make it onto the Real World roster. They also remix "Sweet Pain" by Nusrat Fateh Ali Khan for the Star Rise tribute album in 1997.</div>
+        <span class="timeline-tag">Real World</span>
+        <span class="timeline-tag green">WOMAD</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1997</div>
+        <div class="timeline-event">Signed to Real World</div>
+        <div class="timeline-detail">Officially sign to Real World Records — the label Farook describes as "the only label we felt happy to be involved with long term". Major label interest had come and gone with what Farook describes as a "brief, ill-fated signing". Real World represented something different: a home for global music with artistic integrity. Joi had by now done over 1,500 gigs as a sound system. Their live band features vocalist Susheela Raman, guitarist Vik Sharma, and percussionist Bongo Paul, plus traditional instruments — tabla, sitar, flute — over driving techno rhythms.</div>
+        <span class="timeline-tag">Real World</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1998</div>
+        <div class="timeline-event">Spiritualized Tour + "Fingers" Single</div>
+        <div class="timeline-detail">Joi supports Spiritualized on their British tour. Jason Pierce (Jason Spaceman) later recalls the brothers' "welcoming and non-judgemental friendship" when he first moved to London. Limited edition single "Fingers" released December 1998, with a Justin Robertson (Lionrock) remix that becomes popular on the club scene and paves the way for the debut album.</div>
+        <span class="timeline-tag">Live</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1999 (March)</div>
+        <div class="timeline-event">One and One Is One — Debut Album</div>
+        <div class="timeline-detail">Released April 1999 on Real World. Named after a Rabindranath Tagore metaphysical equation on love and friendship. Hailed across the board: Q magazine gives it four stars; NME calls it "inventive, hard-hitting." The album blends melodic harmonies, tabla rhythms, electro beats, chants, and vocal snatches. Their music is used in Sex and the City. They headline The Viper Room in Los Angeles at Johnny Depp's invitation. Wins BBC Asian Music Award.</div>
+        <span class="timeline-tag green">BBC Asian Music Award</span>
+        <span class="timeline-tag">Debut Album</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">1999 (July 8)</div>
+        <div class="timeline-event">Haroon Shamsher Dies</div>
+        <div class="timeline-detail">Haroon dies unexpectedly at age 34 of a heart attack. He had been ill for a week and suffered the fatal attack during a hospital examination — having performed the night before. Two months earlier he had visited Bangladesh for a month, making field recordings of local musicians in the family's village in Sylhet, including tabla players, flute players, and a 14-year-old girl from the village who sang directly to him. Those recordings become the foundation of the next album. Farook later says: "I still feel he is there, that he left behind something that is part of both of us."</div>
+        <span class="timeline-tag red">Passing</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">2000–2001</div>
+        <div class="timeline-event">We Are Three — Tribute Album</div>
+        <div class="timeline-detail">Released October 2000 (some sources say 2001), built entirely around Haroon's Bangladesh field recordings and their unreleased collaborations. Co-produced by Farook Shamsher, John Coxon and Ashley Wales (Spring Heel Jack). The title references a passage from the Sufi poet Rumi. Album opens with the sounds of a rickshaw journey from Sylhet town to their village. Farook tours Europe with the Eurythmics, playing to 15–20,000 nightly. Reviews in Q (4 stars), Wired USA ("one of the most dynamic worldbeat releases of the year"), London Metro.</div>
+        <span class="timeline-tag">Second Album</span>
+        <span class="timeline-tag">Bangladesh</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">2003</div>
+        <div class="timeline-event">Featured in "Mutiny: Asians Storm British Music"</div>
+        <div class="timeline-detail">Vivek Bald's documentary on the Asian Underground movement, premiering at San Francisco Asian-American Film Festival (reviewed in Variety, March 2003). Survey of the impact Asian-heritage music had on British pop. Joi are central figures in the story, alongside Asian Dub Foundation, FunDaMental, Cornershop, Talvin Singh.</div>
+        <span class="timeline-tag">Documentary</span>
+        <span class="timeline-tag">Legacy</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">2007</div>
+        <div class="timeline-event">Without Zero — Third Album</div>
+        <div class="timeline-detail">Released January 2007. Named after Hindu mathematician Brahmagupta (born 598 BC), credited with the concept of zero. Farook describes it as a fusion of both previous albums, with a new Arabic influence. Introduces Mumbai-based sitarist Niladri Kumar ("Asian Hendrix") after Farook ditched most of his written material upon hearing him play. Features Algerian multi-instrumentalist Yazid on zorna, oud and banjo; vocalist Apeksha Dandekar. Wins Farook the UK Asian Music Awards Commitment to Scene award in 2006.</div>
+        <span class="timeline-tag">Third Album</span>
+        <span class="timeline-tag green">UK Asian Music Award</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">2015</div>
+        <div class="timeline-event">Joi Sound System — Best Of</div>
+        <div class="timeline-detail">Real World releases a 22-track double album compiled from all three studio albums plus three bonus tracks, including "Desert Storm". The liner notes by Jane Cornwell contextualise Joi's full arc: "Joi weren't simply a band or a sound system. Joi were a way of thinking. A philosophy."</div>
+        <span class="timeline-tag">Compilation</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">2017</div>
+        <div class="timeline-event">Haroon Honoured with Blue Plaque</div>
+        <div class="timeline-detail">On 15 June 2017, the British Plaque Trust (in partnership with BBC Asian Network / BBC Music Day) unveils a Blue Plaque for Haroon Shamsher in Brick Lane — one of the first Blue Plaques awarded to a British South Asian artist. The announcement prompts an outpouring from figures including Nitin Sawhney, Jason Spaceman (Spiritualised), Pandit G (Asian Dub Foundation), Jon Coxon (Spring Heel Jack), Aki Nawaz (Nation Records), Colin Angus (The Shamen), and Bobby Friction.</div>
+        <span class="timeline-tag green">Blue Plaque</span>
+        <span class="timeline-tag">Legacy</span>
+      </div>
+
+      <div class="timeline-entry">
+        <div class="timeline-year">2026</div>
+        <div class="timeline-event">Farook on Worldwide FM</div>
+        <div class="timeline-detail">Farook joins Rohan Rakhit's First Light show on Worldwide FM (Gilles Peterson's station) on 21 April 2026 — described as "producer, DJ and activist... one of the key figureheads of the Asian Underground scene of the 90s and 2000s". Confirms Farook is still active and engaged with contemporary music culture.</div>
+        <span class="timeline-tag">Present Day</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 2: PEOPLE -->
+  <div class="section" id="people">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div>
+        <div class="section-title">Key People</div>
+        <div class="section-desc">The Shamsher brothers and their extended circle</div>
+      </div>
+    </div>
+
+    <div class="people-grid">
+      <div class="person-card">
+        <div class="person-name">Haroon Shamsher</div>
+        <div class="person-role">Co-Founder · DJ · Visionary</div>
+        <div class="person-bio">The elder brother and original DJ engine of Joi. Farook describes him as "the Godfather of DJing and professional mixing." Technically extraordinary — capable of synchronising two digital tapes by hand, achieving polyrhythms that mixed Asian music with Western beats with total precision. Characterised by collaborators as shy, quiet, and resistant to the limelight — "very loud qualities that most others in that microcosm seemed to lack" (Mushtaq Omar Uddin). Visited Bangladesh two months before his death to capture field recordings for what became We Are Three. Died July 8, 1999 of heart failure, age 34.</div>
+        <div class="person-born-died">14 Nov 1965 — 8 Jul 1999 · Brick Lane Blue Plaque, 2017</div>
+        <div class="tags">
+          <span class="tag">DJ</span><span class="tag">Field Recording</span><span class="tag">Founder</span>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Farook Shamsher</div>
+        <div class="person-role">Co-Founder · Producer · Activist · Continuing Member</div>
+        <div class="person-bio">The younger brother and sole continuing member of Joi. Farook describes himself as "the spice chef — I grind the spices. The master chefs put it all together. But I have the final say on how it tastes." Has continued Joi's mission as a DJ, producer, and cultural activist. Still refers to Joi in the collective and occasionally speaks of Haroon in the present tense. Called "Godfather of London's Asian Underground" by Rolling Stone India. Became a father circa 2009. Most recently appeared on Worldwide FM's First Light with Rohan Rakhit (April 2026).</div>
+        <div class="person-born-died">Born 24 Oct 1968, Bradford</div>
+        <div class="tags">
+          <span class="tag">Producer</span><span class="tag">DJ</span><span class="tag">Activist</span>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Soni Shamsher</div>
+        <div class="person-role">Father · Professional Flautist</div>
+        <div class="person-bio">The brothers' father — a professional flautist of Bangladeshi origin who ran a Brick Lane shop selling saris and traditional instruments imported from the Indian subcontinent. Organised sessions and recorded with Baul artists, selling the tapes. His impromptu studio became the environment where Farook and Haroon first absorbed the sonic vocabulary that would define Joi. Farook credits his father alongside Haroon as the foundational influence on his life in music.</div>
+        <div class="tags">
+          <span class="tag">Flautist</span><span class="tag">Brick Lane</span>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Susheela Raman</div>
+        <div class="person-role">Vocalist (Live Band)</div>
+        <div class="person-bio">Singer who joined Joi's live crossover band formation. Her vocals appear on "The Holy Side" on We Are Three. One of several musicians who helped transform Joi from a pure sound system into a full band capable of headline festival and arena performances.</div>
+        <div class="tags"><span class="tag">Vocalist</span><span class="tag">Live</span></div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Niladri Kumar</div>
+        <div class="person-role">Sitarist — Without Zero</div>
+        <div class="person-bio">Mumbai-based sitarist dubbed "Asian Hendrix" by collaborators. A student of Ravi Shankar, he reinvents sitar rhythms by fusing classical mastery with modern sensibility. When Farook heard him play, he discarded most of his pre-written material for Without Zero and started again. Kumar told Farook: "I've played for you like I've never played for anyone else." His playing dominates the album's sonic character.</div>
+        <div class="tags"><span class="tag">Sitar</span><span class="tag">Without Zero</span></div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">John Coxon & Ashley Wales</div>
+        <div class="person-role">Spring Heel Jack — Producers</div>
+        <div class="person-bio">Jazz/electronic duo who co-produced We Are Three and appear on Without Zero. Coxon describes Haroon as "a musical agitator, with no respect for musical boundaries." Long-term Joi collaborators who understood the music's internal logic deeply enough to help Farook assemble Haroon's Bangladesh recordings into a coherent album after his death.</div>
+        <div class="tags"><span class="tag">Producer</span><span class="tag">Spring Heel Jack</span></div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">Peter Gabriel</div>
+        <div class="person-role">Real World Records</div>
+        <div class="person-bio">Saw Joi perform at WOMAD 1996, signed them to Real World Records. His greeting — "Welcome to the family" — marks the beginning of Joi's most productive recording chapter. Real World's Blue Note shows had already been part of the Asian Underground world; the label connection gave Joi international distribution and artistic legitimacy.</div>
+        <div class="tags"><span class="tag">Real World</span><span class="tag">WOMAD</span></div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-name">DJ Ritu</div>
+        <div class="person-role">Scene Witness · Collaborator</div>
+        <div class="person-bio">Regular at early Joi parties. Describes the atmosphere in sleeve notes to her 2003 Asian Underground compilation: "A friendly atmosphere and exciting, new music which combined beats, breaks, tablas, rap, swirling basslines, and Indian female vocal samples with very electronic and danceable music." She later hosted Talvin Singh's Anokha nights at the same Blue Note venue where Joi had already pioneered the scene.</div>
+        <div class="tags"><span class="tag">DJ</span><span class="tag">Scene</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: ALBUMS -->
+  <div class="section" id="albums">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div>
+        <div class="section-title">Discography — Albums</div>
+        <div class="section-desc">Three studio albums, a best-of, and the intellectual architecture behind each title</div>
+      </div>
+    </div>
+
+<div class="album-grid">
+
+      <div class="album-card">
+        <div class="album-year">1999</div>
+        <div class="album-title">One and<br>One Is One</div>
+        <div class="album-label">Real World Records · RW74 · 11 April 1999</div>
+        <div class="album-desc">Debut album. Title from Rabindranath Tagore's Metaphysical Mathematics: "One plus one in love equals one. The one plus one are the total world." An aspirational melting pot of melodic harmonies, tabla rhythms, electro beats, chants, and vocal snatches. Critically acclaimed across Q, NME, Time Out. Music used in Sex and the City.</div>
+        <div class="album-quote">East collides majestically with West... Trans-global for sure, but destined to leave the underground. — NME</div>
+        <div class="album-tracks">
+          <div class="album-tracks-label">Tracklist</div>
+          <ol class="track-list">
+            <li>Fingers</li>
+            <li>Everybody Say Yeah</li>
+            <li>Asian Vibes</li>
+            <li>Massive</li>
+            <li>Oh My People</li>
+            <li>ESY-SHJ</li>
+            <li>March On</li>
+            <li>Mission</li>
+            <li>Heartbeat</li>
+            <li>India</li>
+            <li>Joi Bani</li>
+          </ol>
+        </div>
+        <div class="tags">
+          <span class="tag">Debut</span>
+          <span class="tag">Tagore</span>
+          <span class="tag green">BBC Asian Music Award</span>
+        </div>
+      </div>
+
+      <div class="album-card">
+        <div class="album-year">2000</div>
+        <div class="album-title">We Are<br>Three</div>
+        <div class="album-label">Real World Records · RW92 · 15 October 2000</div>
+        <div class="album-desc">Tribute album to Haroon, built around his Bangladesh field recordings made six weeks before his death. Title from Rumi: "We are three. The moon comes from its quiet corner, puts a pitcher of water down in the center... This dance is the joi of existence." Co-produced with Spring Heel Jack. Recorded in Sylhet, Bangladesh and at The Strongroom, London.</div>
+        <div class="album-quote">One of the most dynamic worldbeat releases of the year. — Wired USA</div>
+        <div class="album-tracks">
+          <div class="album-tracks-label">Tracklist</div>
+          <ol class="track-list">
+            <li>Journey</li>
+            <li>Prem</li>
+            <li>Don't Cha Know That</li>
+            <li>The Holy Side</li>
+            <li>Deep Asian Vibes</li>
+            <li>Triatma</li>
+            <li>Flying With You</li>
+            <li>Tacadin</li>
+            <li>We Need Your Vote</li>
+          </ol>
+        </div>
+        <div class="tags">
+          <span class="tag">Tribute</span>
+          <span class="tag">Rumi</span>
+          <span class="tag">Bangladesh</span>
+          <span class="tag">Spring Heel Jack</span>
+        </div>
+      </div>
+
+      <div class="album-card">
+        <div class="album-year">2007</div>
+        <div class="album-title">Without<br>Zero</div>
+        <div class="album-label">Real World Records · RW143 · 19 January 2007</div>
+        <div class="album-desc">Third album. Title nods to Brahmagupta (born 598 AD), the Hindu mathematician credited with inventing zero. "Shamelessly upbeat." Minimal sampling — real playing values. Features Niladri Kumar (sitar), Apeksha Dandekar (vocals), Yazid (zorna, oud, banjo), Keefe West (guitar), Spring Heel Jack. Distinct Arabic influence. "Come Back To Me" is a direct paean to Haroon.</div>
+        <div class="album-quote">Spirited, experimentally minded soundclash that's as fun as it is inspired. — BBC World Review</div>
+        <div class="album-tracks">
+          <div class="album-tracks-label">Tracklist</div>
+          <ol class="track-list">
+            <li>Praying For You</li>
+            <li>Come Back To Me</li>
+            <li>The Blessing</li>
+            <li>What You Are</li>
+            <li>Cha Cha Cha</li>
+            <li>Forget Me Not</li>
+            <li>My Love</li>
+            <li>Amar Kahani</li>
+            <li>Show Me Love</li>
+          </ol>
+        </div>
+        <div class="tags">
+          <span class="tag">Brahmagupta</span>
+          <span class="tag">Arabic Influence</span>
+          <span class="tag">Niladri Kumar</span>
+        </div>
+      </div>
+
+      <div class="album-card">
+        <div class="album-year">2015</div>
+        <div class="album-title">Joi Sound<br>System</div>
+        <div class="album-label">Real World Records · RW208 · 18 June 2015</div>
+        <div class="album-desc">22-track double album best-of, compiled from all three studio albums plus three bonus tracks including "Desert Storm." Farook: "When I looked back at the way the titles fell... I saw they were telling the story of Joi in words and in music." Described in liner notes as not just a band, but "a way of thinking. A philosophy."</div>
+        <div class="album-quote">An often mesmerising set of ambient techno and Asian fusion. ★★★★ — MOJO</div>
+        <div class="tags">
+          <span class="tag">Best Of</span>
+          <span class="tag">22 Tracks</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4: SINGLES -->
+  <div class="section" id="discography">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div>
+        <div class="section-title">Singles & EPs</div>
+        <div class="section-desc">From white label to Real World</div>
+      </div>
+    </div>
+
+    <table class="discog-table">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Title</th>
+          <th>Label</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="year" data-label="Year">1988</td>
+          <td class="title" data-label="Title">Taj Ma House</td>
+          <td data-label="Label">BPM Records</td>
+          <td class="note" data-label="Notes">First white label single</td>
+        </tr>
+        <tr>
+          <td class="year" data-label="Year">1988</td>
+          <td class="title" data-label="Title">Funky Asian</td>
+          <td data-label="Label">BPM Records</td>
+          <td class="note" data-label="Notes">Early release</td>
+        </tr>
+        <tr>
+          <td class="year" data-label="Year">1992</td>
+          <td class="title" data-label="Title">Desert Storm</td>
+          <td data-label="Label">Transglobal</td>
+          <td class="note" data-label="Notes">NME Single of the Week · "One of the most inventive dance records ever made"</td>
+        </tr>
+        <tr>
+          <td class="year" data-label="Year">1996</td>
+          <td class="title" data-label="Title">Bangladesh EP</td>
+          <td data-label="Label">Nation Records</td>
+          <td class="note" data-label="Notes">Led to WOMAD performance and Real World signing</td>
+        </tr>
+        <tr>
+          <td class="year" data-label="Year">1996</td>
+          <td class="title" data-label="Title">Spiritual Get Together</td>
+          <td data-label="Label">ZYX Music</td>
+          <td class="note" data-label="Notes">—</td>
+        </tr>
+        <tr>
+          <td class="year" data-label="Year">1997</td>
+          <td class="title" data-label="Title">Sweet Pain (remix)</td>
+          <td data-label="Label">Real World</td>
+          <td class="note" data-label="Notes">Nusrat Fateh Ali Khan's Star Rise album · Also "Goddess" on Eastern Uprising (Sony)</td>
+        </tr>
+        <tr>
+          <td class="year" data-label="Year">1998</td>
+          <td class="title" data-label="Title">Fingers</td>
+          <td data-label="Label">Real World</td>
+          <td class="note" data-label="Notes">Limited edition · Justin Robertson (Lionrock) remix paved way for debut album</td>
+        </tr>
+        <tr>
+          <td class="year" data-label="Year">1999</td>
+          <td class="title" data-label="Title">Asian Vibes</td>
+          <td data-label="Label">Real World</td>
+          <td class="note" data-label="Notes">Music video filmed in Times Square NYC · Way Out West remix</td>
+        </tr>
+        <tr>
+          <td class="year" data-label="Year">1999</td>
+          <td class="title" data-label="Title">Deep Asian Vibes</td>
+          <td data-label="Label">Real World</td>
+          <td class="note" data-label="Notes">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 5: CONTEXT -->
+  <div class="section" id="context">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div>
+        <div class="section-title">Context & Scene</div>
+        <div class="section-desc">The world Joi built, and the world that built Joi</div>
+      </div>
+    </div>
+
+    <div class="context-block">
+      <h3>Brick Lane & The East End</h3>
+      <p>Joi emerges from the specific geography of Brick Lane — the commercial and cultural heart of East London's Bangladeshi community since the 1970s. Their father's shop is a node of musical exchange; the street itself is a battleground. The early 1980s East End is marked by racism, NF activity, and poverty. "We used to go through certain areas and get abuse thrown at us," Farook recalls. "That was basically why Joi was set up — to combat that sort of stuff and to say that we're just the same as you."</p>
+      <p>The choice to set up a club in Hoxton Square — "real hide-your-money-in-your-socks stuff" — before it became fashionable was both a political act and a pragmatic one: no mainstream venues would have them. Joi didn't move to where culture was; they created culture where they were.</p>
+    </div>
+
+    <div class="context-block">
+      <h3>The Asian Underground</h3>
+      <p>Joi predates the term "Asian Underground" by nearly a decade. They are its origin point, not its product. Talvin Singh later sets up Anokha — the weekly club night at the Blue Note credited with coining the scene — in the same venue where Joi had already been running their Thursday nights. Nitin Sawhney, Asian Dub Foundation, Cornershop, FunDaMental, and Cornershop all orbit the same East London network.</p>
+      <p>The scene emerges from a generation born-and-raised in Britain who reject both their parents' traditionalism and the racism of mainstream British society — embracing punk's DIY ethic while finding their sonic language in hip hop, drum 'n' bass, dub, bhangra, ragas, and qawwali simultaneously. Joi's particular contribution is the insistence on bringing their parents into it: getting Arts Council funding, involving classical musicians, maintaining the community ethos even as the music became harder and more electronic.</p>
+      <p>Nitin Sawhney: "Haroon was a pioneer of sound, a pioneer of social conscience and awareness and a pioneer of Asian street credibility in Britain. He and his brother Farook inspired myself and many others, including Talvin Singh, to search further and harder for new sounds to express a dispossessed generation of British Asians. If there ever was an Asian underground sound, it started with Joi."</p>
+    </div>
+
+    <div class="context-block">
+      <h3>The Philosophy</h3>
+      <p>Joi's three album titles encode a deliberate intellectual project: Tagore (love and unity), Rumi (spiritual community), Brahmagupta (Asian genius unrecognised in the West). Farook: "There are so many Asian geniuses that are still unsung in the West. We want to engage peoples' imaginations, get them thinking and exploring." Their T-shirts read "Set yourself free with the spirit of Joi." Their message is anti-racist but not grievance-based — it is centred on abundance, beauty, and the revelation of shared human heritage.</p>
+      <p>The mix methodology reflects this: Farook describes DJing as gradually introducing a traditional Bengali tune into a James Brown groove — slowly raising the volume of the traditional sound until the crowd are dancing to it alone, often without realising the shift has happened. This is not assimilation; it is seduction toward roots.</p>
+    </div>
+
+    <div class="context-block">
+      <h3>Sound System vs. Live Band</h3>
+      <p>Joi operated simultaneously as a sound system and as a full live band — an unusual dual identity. As a sound system they mixed vinyl, DATs, samples and live tabla improvisation. As a band they added Susheela Raman on vocals, Vik Sharma on guitar, Bongo Paul on percussion, plus flute, sitar. "Which people still aren't doing," Farook notes of the practice of mixing DATs with vinyl while playing live over the top. They headlined WOMAD, Tribal Gathering, Whirl-Y-Gig, Big Chill, Glastonbury, Wembley, and performed across Europe and the US. By 1998, over 1,500 gigs as a sound system.</p>
+    </div>
+
+    <div class="context-block">
+      <h3>Bangladesh: The Return</h3>
+      <p>Two months before his death, Haroon travelled to Sylhet, Bangladesh — to the family's village — with a mini-disc recorder. He spent a month capturing: flute players, tabla players, a 14-year-old girl from the village who sang directly to him. He recorded the sounds of a rickshaw journey from Sylhet town to the village. He recorded a Bengali man intoning that one should never forget. These recordings became We Are Three. Farook returned to Bangladesh in June 2000 to continue the work: "It's brilliant to see so many people in Sylhet who've heard of Joi's music." The Bangladesh thread runs through Joi's entire work — the village, the father, the musicians, the language.</p>
+    </div>
+
+  </div>
+
+  <!-- SECTION 6: QUOTES -->
+  <div class="section" id="quotes">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div>
+        <div class="section-title">Testimonials</div>
+        <div class="section-desc">Peers, collaborators, and witnesses on Joi's meaning</div>
+      </div>
+    </div>
+
+<div class="quotes-grid">
+      <div class="quote-card">
+        <div class="quote-text">Haroon Shamsher changed British Music forever. Haroon Shamsher changed Britain forever.</div>
+        <div class="quote-attr">Bobby Friction — DJ Presenter, BBC Asian Network</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">If there ever was an Asian underground sound, it started with Joi. When Haroon passed away so young I was genuinely devastated. He was a great man, whose relevance is ever more crystallised by a UK increasingly polarised by race.</div>
+        <div class="quote-attr">Nitin Sawhney — Musician & Composer</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">I remember seeing Joi Bangla Sound System down Bass Clef back in the 80s. The music, the vibe, the crowd. I knew then something new was going to happen, bringing together not just our origins — but where we find ourselves today.</div>
+        <div class="quote-attr">Pandit G — Asian Dub Foundation</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Haroon was a musical agitator, with no respect for musical boundaries.</div>
+        <div class="quote-attr">Jon Coxon — Spring Heel Jack / Producer</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Joi were the DNA.</div>
+        <div class="quote-attr">Dave Watts — Fun-da-mental, Nation Records</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">I remember Haroon's shyness, quietness and reluctance to limelight. Very loud qualities that most others in that microcosm seemed to lack. A true genius of his time. I used to look up to him.</div>
+        <div class="quote-attr">Mushtaq Omar Uddin — Producer (Amy Winehouse, Skepta)</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">When I first moved to London over 30 years ago, their welcoming and non-judgemental friendship and kindness helped me to find a few footholds in the often strange and overwhelming East London of the time. Much love and respect.</div>
+        <div class="quote-attr">Jason Spaceman — Spiritualised</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Haroon was a hero and acknowledgement to him and Joi collective is an absolute Joy.</div>
+        <div class="quote-attr">Aki Nawaz — Nation Records, Fun-Da-Mental</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Haroon was one of the pioneers of the Asian Underground. BBC Asian Network and BBC Music are really proud to honour music icons with the first Blue Plaques for artists from South-Asian heritage.</div>
+        <div class="quote-attr">Mark Strippel — Head of BBC Radio 1Xtra / Asian Network</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Of course it's difficult to make music without him, because when you have two people to bounce ideas off of, it's a beautiful experience. But I still feel he is there — that he left behind something that is part of both of us and of Joi.</div>
+        <div class="quote-attr">Farook Shamsher — Rolling Stone India, 2009</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">We were the Warhols of the Asian scene. We just let ourselves go and partied and had lots of fun. It was an amazing time.</div>
+        <div class="quote-attr">Farook Shamsher — Rolling Stone India, 2009</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">Haroon was a fine and collegiate fellow to be with aboard the tour bus, as well as an attractive and charismatic presence on stage. Haroon was also blessed with an impish sense of humour — his inflight attire including a t-shirt bearing the legend "Don't Panic, I'm Islamic."</div>
+        <div class="quote-attr">Colin Angus — The Shamen</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: AWARDS -->
+  <div class="section" id="awards">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <div>
+        <div class="section-title">Awards & Recognition</div>
+      </div>
+    </div>
+    <ul class="awards-list">
+      <li>
+        <span class="award-year">1992</span>
+        <span class="award-work">Desert Storm</span>
+        <span class="award-body">NME Magazine</span>
+        <span class="award-cat">Single of the Week</span>
+      </li>
+      <li>
+        <span class="award-year">1999</span>
+        <span class="award-work">One and One Is One</span>
+        <span class="award-body">BBC Asian Music Awards</span>
+        <span class="award-cat">Asian Music Award</span>
+      </li>
+      <li>
+        <span class="award-year">2006</span>
+        <span class="award-work">Farook Shamsher</span>
+        <span class="award-body">UK Asian Music Awards</span>
+        <span class="award-cat">Commitment to Scene</span>
+      </li>
+      <li>
+        <span class="award-year">2017</span>
+        <span class="award-work">Haroon Shamsher</span>
+        <span class="award-body">BBC Music Day / British Plaque Trust</span>
+        <span class="award-cat">Blue Plaque — Brick Lane</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- SECTION 8: SOURCES -->
+  <div class="section" id="sources">
+    <div class="section-header">
+      <div class="section-num">08</div>
+      <div>
+        <div class="section-title">Source Log</div>
+        <div class="section-desc">All URLs consulted in the compilation of this archive</div>
+      </div>
+    </div>
+    <ul class="source-list">
+      <li><span class="source-type">Wikipedia</span><span class="source-name">en.wikipedia.org/wiki/Joi_(band)</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Rolling Stone</span><span class="source-name">rollingstoneindia.com — "Joi to the World" (2009, Asha S Madan)</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Real World</span><span class="source-name">realworldrecords.com — Remembering Haroon Shamsher</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Real World</span><span class="source-name">realworldrecords.com — Joi Sound System (liner notes, Jane Cornwell)</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Real World</span><span class="source-name">realworldrecords.com — One and One Is One</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Real World</span><span class="source-name">realworldrecords.com — We Are Three (liner notes, Farook Shamsher)</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Real World</span><span class="source-name">realworldrecords.com — Without Zero (liner notes, Jane Cornwell)</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Spectacle</span><span class="source-name">spectacle.co.uk — Joi Bangla film (1986, Despite TV)</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Variety</span><span class="source-name">variety.com — Mutiny: Asians Storm British Music review (2003)</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Worldwide FM</span><span class="source-name">worldwidefm.net — First Light: Rohan Rakhit w/ Farook JOI (21 Apr 2026)</span><span class="source-status ok">✓ Retrieved</span></li>
+      <li><span class="source-type">Bandcamp</span><span class="source-name">hiddengemsnation.bandcamp.com — Bangladesh EP</span><span class="source-status">JS-only content</span></li>
+      <li><span class="source-type">Bandcamp</span><span class="source-name">fullcirclereleased.bandcamp.com — A Desert Storm (2024 compilation)</span><span class="source-status">JS-only content</span></li>
+      <li><span class="source-type">The Independent</span><span class="source-name">independent.co.uk — Obituary: Haroon Shamsher</span><span class="source-status blocked">Access blocked</span></li>
+      <li><span class="source-type">Mixmag</span><span class="source-name">mixmag.net — South Asian Underground 1990s history</span><span class="source-status blocked">403 error</span></li>
+      <li><span class="source-type">Washington Post</span><span class="source-name">washingtonpost.com — "Joi's We Are Three: Asian Fusion" (2001)</span><span class="source-status blocked">403 error</span></li>
+      <li><span class="source-type">Moksha</span><span class="source-name">moksha.co.uk — Blue Plaque, Brick Lane</span><span class="source-status blocked">SSL error</span></li>
+      <li><span class="source-type">BFI</span><span class="source-name">bfi.org.uk — "I'm British But" (film)</span><span class="source-status blocked">404 error</span></li>
+      <li><span class="source-type">Notion DB</span><span class="source-name">sketchboard-interactive.notion.site — Joi Research Library</span><span class="source-status blocked">JS rendering required</span></li>
+      <li><span class="source-type">Notion DB</span><span class="source-name">sketchboard-interactive.notion.site — JOI Collaborators</span><span class="source-status blocked">Not yet retrieved</span></li>
+      <li><span class="source-type">YouTube</span><span class="source-name">youtube.com/watch?v=Vfg4JdpOGgw</span><span class="source-status">Not fetched (video)</span></li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="archive-footer">
+  <div class="footer-left">JOI SOUNDSYSTEM — DOCUMENTARY ARCHIVE</div>
+  <div class="footer-right">Compiled May 2026<br>Sources: Real World Records, Wikipedia, Rolling Stone India,<br>Spectacle Archive, Worldwide FM</div>
+</div>
+
+</body>
+</html>
